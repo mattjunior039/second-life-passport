@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health Check · Second Life Passport</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <div class="logo">SL</div>
+  <div class="brand">Health Check<small>Measured, not typed</small></div>
+</div></div>
+<main class="wrap">
+  <div class="card">
+    <h2><span class="ico">💻</span> Chromebook</h2>
+    <p>Open the launcher, search <b>Diagnostics</b>, and read <b>Battery health</b> and <b>Cycle count</b> from the Battery card. Enter them in the <a href="../create/">Repair Station</a>.</p>
+  </div>
+  <div class="card">
+    <h2><span class="ico">🪟</span> Windows / ThinkPad</h2>
+    <p>Download <a href="windows.ps1">windows.ps1</a> and run it in PowerShell. It reads design capacity, full-charge capacity and cycle count from Windows (the same data as <code>powercfg /batteryreport</code>) and opens the Repair Station pre-filled.</p>
+  </div>
+  <div class="card">
+    <h2><span class="ico">🍎</span> Mac</h2>
+    <p>Run in Terminal:</p>
+    <p><code>curl -s https://mattjunior039.github.io/second-life-passport/health-check/mac.sh | bash</code></p>
+  </div>
+</main>
+</body>
+</html>

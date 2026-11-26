@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16181d">
+<title>Second Life Passport</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <div class="logo">SL</div>
+  <div class="brand">Second Life Passport<small>Don't trust it. Tap it.</small></div>
+</div></div>
+
+<main class="wrap" id="app"><p style="padding:40px 0;color:#5d6470">Loading passport…</p></main>
+
+<script src="../assets/vendor/qrcode.js"></script>
+<script src="../assets/app.js"></script>
+<script>
+window.addEventListener("hashchange", () => location.reload());
+(async () => {
+  const { esc, forecast } = SLP;
+  const app = document.getElementById("app");
+  const params = new URLSearchParams(location.search);
+  const hash = new URLSearchParams(location.hash.slice(1));
+  const reg = await SLP.registry();
+
+  let record, fromLink = false;
+  try {
+    if (hash.get("d")) { record = await SLP.decode(hash.get("d")); fromLink = true; }
+    else if (params.get("id") && reg[params.get("id")]) record = reg[params.get("id")].record;
+  } catch (e) { record = null; }
+
+  if (!record) {
+    app.innerHTML = `<div class="alert bad"><b>No passport found.</b><br>This tag isn't linked to a Second Life Passport record.</div>`;
+    return;
+  }
+
+  const fp = await SLP.fingerprint(record);
+  const official = reg[record.id];
+  let trust;
+  if (official && official.fingerprint === fp) {
+    trust = `<span class="badge ok">✅ Verified record · matches registry</span>`;
+  } else if (official) {
+    trust = `<span class="badge bad">⛔ Altered record</span>
+      <div class="alert bad"><b>Warning: this record has been changed.</b><br>
+      It doesn't match the official record for ${esc(record.id)}. Someone may have edited the numbers. Don't trust this listing.</div>`;
+  } else {
+    trust = `<span class="badge warn">🕒 New record · not yet registered</span>`;
+  }
+
+  const b = record.battery || {};
+  const f = forecast(b);
+  const color = { good: "#128a4b", new: "#128a4b", fair: "#c77700", low: "#c62828", replace: "#c62828" }[f.status] || "#999";
+  const initials = (record.fixer?.name || "?").split(/\s+/).map(s => s[0]).join("").slice(0, 2).toUpperCase();
+
+  const checks = (record.checks || []).map(c =>
+    `<div class="row"><span class="k">${esc(c.name)}</span><span class="v pass">✓ ${esc(c.result || "Passed")}</span></div>`).join("");
+  const repairs = (record.repairs || []).map(r =>
+    `<li><b>${esc(r.part)}</b> ${r.genuine ? '<span class="pill">Genuine Lenovo part</span>' : ""}<br>${esc(r.detail || "")}<div class="d">${esc(r.date)}</div></li>`).join("");
+  const timeline = (record.history || []).map(h =>
+    `<li>${esc(h.event)}<div class="d">${esc(h.date)}</div></li>`).join("");
+
+  app.innerHTML = `
+  <section class="hero">
+    ${trust}
+    <div class="model">${esc(record.model)}</div>
+    <div class="meta">Passport ${esc(record.id)} · Refurbished ${esc(record.refurbished_on)}</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="ico">🔋</span> Battery · measured, not typed</h2>
+    <div class="big">${f.health}%<small> health</small></div>
+    <div class="bar"><span style="width:${Math.min(100, f.health)}%;background:${color}"></span><i class="mark" style="left:${SLP.REPLACE_AT}%"></i></div>
+    <div class="scale"><span>0%</span><span>Replace at ${SLP.REPLACE_AT}%</span><span>100%</span></div>
+    <div class="row" style="margin-top:8px"><span class="k">Charge cycles</span><span class="v">${esc(b.cycles)}</span></div>
+    ${b.design ? `<div class="row"><span class="k">Holds now / when new</span><span class="v">${esc(b.full)} / ${esc(b.design)} ${esc(b.unit || "mWh")}</span></div>` : ""}
+    <div class="forecast ${f.status}">🔮 ${esc(f.text)}${f.detail ? `<small>${esc(f.detail)}</small>` : ""}</div>
+    <div class="source">Read directly from the battery controller by ${esc(b.source)} on ${esc(b.measured_on)}.</div>
+    <details><summary>How is this calculated?</summary>
+      <p>Health = how much energy the battery holds now ÷ how much it held when new. The forecast takes the average wear per charge so far and projects how many charges remain before ${SLP.REPLACE_AT}% health or ${SLP.MAX_CYCLES} cycles, Lenovo's Certified Refurbished replacement standard. This is an estimate, not a guarantee.</p>
+    </details>
+  </section>
+
+  <section class="card">
+    <h2><span class="ico">🔒</span> Clean slate</h2>
+    <div class="row"><span class="k">Previous owner's data</span><span class="v pass">✓ Erased &amp; verified</span></div>
+    <div class="row"><span class="k">Method</span><span class="v">${esc(record.wipe?.method)}</span></div>
+    <div class="row"><span class="k">Date</span><span class="v">${esc(record.wipe?.date)}</span></div>
+    <div class="row"><span class="k">Personal info stored here</span><span class="v">None</span></div>
+  </section>
+
+  <section class="card">
+    <h2><span class="ico">🛠️</span> Repairs &amp; checks</h2>
+    ${repairs ? `<ul class="timeline">${repairs}</ul>` : ""}
+    ${checks}
+  </section>
+
+  <section class="card">
+    <h2><span class="ico">✍️</span> From the student who fixed it</h2>
+    <p class="note">“${esc(record.fixer?.note)}”</p>
+    <div class="signer"><div class="avatar">${esc(initials)}</div>
+      <div><b>${esc(record.fixer?.name)}</b><span>${esc(record.fixer?.role)}</span></div></div>
+  </section>
+
+  <section class="card">
+    <h2><span class="ico">🧭</span> This laptop's life so far</h2>
+    <ul class="timeline">${timeline}</ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="ico">🤝</span> If something goes wrong</h2>
+    <div class="actions">
+      <button class="btn" onclick="alert('Demo: this would send a help request to ${esc(record.help?.desk || "the student repair desk")} with this laptop\\'s passport attached.')"><span class="ico">🙋</span><span>Ask the student repair desk<small>${esc(record.help?.desk || "")}</small></span></button>
+      <a class="btn" href="${esc(record.help?.battery_guide)}" target="_blank" rel="noopener"><span class="ico">🔋</span><span>Battery getting weak?<small>${esc(record.help?.battery_note || "Step-by-step replacement guide")}</small></span></a>
+      <a class="btn" href="https://www.lenovo.com/us/en/sustainability-product-recycling/" target="_blank" rel="noopener"><span class="ico">♻️</span><span>Done with it for good?<small>Lenovo takes devices back for free recycling</small></span></a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><span class="ico">🌍</span> Why keeping it matters</h2>
+    <p style="margin:0;font-size:15px;line-height:1.5">Most of a laptop's carbon footprint comes from <b>making</b> it, not using it. In one manufacturer report, about 75% of a laptop's lifetime emissions came from production. Every extra year this laptop works is a new one that doesn't have to be made.</p>
+  </section>
+
+  <footer>
+    Record fingerprint (SHA-256)<br><span class="fp">${fp}</span><br><br>
+    Second Life Passport is a student prototype for the KnoPro × Lenovo “Second Life, Smarter Tech” Challenge.<br>Not affiliated with or endorsed by Lenovo.
+  </footer>`;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "SLP-0042",
+    "model": "Lenovo 300e Chromebook (2nd Gen)",
+    "refurbished_on": "Nov 2026",
+    "battery": {
+      "health": 93,
+      "cycles": 140,
+      "source": "ChromeOS Diagnostics",
+      "measured_on": "Nov 2026"
+    },
+    "wipe": {
+      "method": "ChromeOS Powerwash + verified",
+      "date": "Nov 2026"
+    },
+    "repairs": [
+      { "part": "Keyboard", "detail": "Two sticking keys fixed; every key tested.", "date": "Nov 2026", "genuine": true },
+      { "part": "Hinge screws", "detail": "Loose left hinge tightened; lid opens and closes smoothly.", "date": "Nov 2026", "genuine": false }
+    ],
+    "checks": [
+      { "name": "Display", "result": "No dead pixels" },
+      { "name": "Touchscreen & pen", "result": "Passed" },
+      { "name": "Touchpad", "result": "Passed" },
+      { "name": "Ports (USB-C, USB-A, audio)", "result": "Passed" },
+      { "name": "Wi-Fi & Bluetooth", "result": "Passed" },
+      { "name": "Camera & mic", "result": "Passed" },
+      { "name": "Storage", "result": "Passed" }
+    ],
+    "fixer": {
+      "name": "Matthew",
+      "role": "Student fixer · Second Life Passport",
+      "note": "This one came in with two sticky keys and a wobbly hinge. Both are fixed, and I tested every key and port. The battery numbers above came straight from the Chromebook, not from me. If anything acts up, tap the sticker and ask for help."
+    },
+    "history": [
+      { "date": "2021", "event": "Bought new for a school 1:1 program" },
+      { "date": "2021–2026", "event": "Used by students every school day" },
+      { "date": "Nov 2026", "event": "Health check, data wipe and repairs" },
+      { "date": "Nov 2026", "event": "Passport issued · ready for its second life" }
+    ],
+    "help": {
+      "desk": "Student Repair Desk",
+      "battery_guide": "https://www.ifixit.com/Device/Lenovo_300e_Chromebook_2nd_Gen",
+      "battery_note": "Free step-by-step guides for this exact model"
+    }
+  }
+]

@@ -3,3 +3,4 @@ video/recordings/
 video/build/
 .DS_Store
 slides/build/
+__pycache__/

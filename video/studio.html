@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Recording Studio · Second Life Passport</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;background:#f3f4f6;color:#111;display:grid;grid-template-columns:270px 1fr;height:100vh}
+aside{background:#16181d;color:#d6d8dc;overflow:auto;padding:16px 10px}
+aside h1{font-size:15px;margin:0 8px 4px;color:#fff}
+aside .sub{font-size:12px;margin:0 8px 14px;color:#9aa0a8}
+.item{display:flex;gap:8px;align-items:center;padding:7px 8px;border-radius:8px;font-size:13px;cursor:pointer}
+.item:hover{background:#24272e}.item.on{background:#e1251b;color:#fff}
+.item .s{width:18px;text-align:center}.item .t{margin-left:auto;font-size:11px;opacity:.7}
+aside .bar{height:6px;background:#2c2f36;border-radius:3px;margin:0 8px 14px;overflow:hidden}
+aside .bar div{height:100%;background:#22c55e}
+main{overflow:auto;padding:28px 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-content:start}
+.kind{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#e1251b}
+h2{font-size:34px;line-height:1.2;margin:10px 0 18px}
+ul{margin:0 0 20px;padding-left:20px;font-size:18px;line-height:1.55;color:#374151}
+.hint{font-size:14px;color:#6b7280;margin-bottom:20px}
+.preview{background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+.preview img,.preview video{max-width:100%;max-height:100%}
+.preview.light{background:#e5e7eb}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+button{font:600 16px -apple-system,Arial;border:0;border-radius:12px;padding:14px 22px;cursor:pointer;background:#e5e7eb}
+button.rec{background:#e1251b;color:#fff;font-size:18px;padding:16px 28px}
+button.keep{background:#16a34a;color:#fff}
+button:disabled{opacity:.4;cursor:default}
+.timer{font:700 40px ui-monospace,Menlo,monospace;margin-left:8px}
+.timer.over{color:#d97706}
+.msg{margin-top:14px;font-size:15px;min-height:22px}
+.build{grid-column:1/-1;border-top:1px solid #d1d5db;padding-top:22px}
+pre{background:#111;color:#d1fae5;padding:14px;border-radius:10px;font-size:12px;white-space:pre-wrap;max-height:260px;overflow:auto}
+kbd{background:#fff;border:1px solid #ccc;border-radius:4px;padding:1px 6px;font-size:13px}
+</style></head>
+<body>
+<aside>
+  <h1>🎬 Recording Studio</h1>
+  <p class="sub" id="progress"></p>
+  <div class="bar"><div id="pbar"></div></div>
+  <div id="list"></div>
+</aside>
+<main>
+  <section>
+    <div class="kind" id="kind"></div>
+    <h2 id="ask"></h2>
+    <ul id="mention"></ul>
+    <p class="hint">Read the question, then answer it out loud in your own words, like you're telling a friend. Hit the target time, roughly. Redo as many times as you want.</p>
+    <div class="controls">
+      <button class="rec" id="rec">● Record</button>
+      <span class="timer" id="timer">0.0s</span>
+    </div>
+    <div class="controls">
+      <button id="play" disabled>▶ Play back</button>
+      <button class="keep" id="keep" disabled>✓ Keep & next</button>
+      <button id="skip">Skip →</button>
+    </div>
+    <div class="msg" id="msg"></div>
+    <p class="hint"><kbd>Space</kbd> start/stop · <kbd>Enter</kbd> keep & next</p>
+  </section>
+  <section>
+    <div class="kind">On screen during this part</div>
+    <div class="preview" id="preview" style="margin-top:10px"></div>
+    <audio id="playback" style="display:none"></audio>
+  </section>
+  <section class="build">
+    <div class="kind">When everything is ✅</div>
+    <div class="controls"><button class="rec" id="build">🎞️ Build my video</button><span id="bmsg"></span></div>
+    <div id="result"></div>
+  </section>
+</main>
+<script>
+let scenes = [], cur = 0, stream = null, rec = null, chunks = [], blob = null, t0 = 0, tick = null;
+const $ = id => document.getElementById(id);
+const recordable = s => s.ask;
+const isFace = s => !s.audio && s.visual.endsWith(".mov");
+const fileOf = s => s.audio || s.visual;
+
+async function load() {
+  scenes = (await (await fetch("/api/status")).json()).filter(recordable);
+  renderList();
+}
+function renderList() {
+  const done = scenes.filter(s => s.done).length;
+  $("progress").textContent = `${done} of ${scenes.length} recorded`;
+  $("pbar").style.width = `${100 * done / scenes.length}%`;
+  $("list").innerHTML = scenes.map((s, i) => `<div class="item ${i === cur ? "on" : ""}" onclick="go(${i})">
+    <span class="s">${s.done ? "✅" : isFace(s) ? "🎥" : "🎙️"}</span>${i + 1}. ${s.id.replace(/^\d+-/, "")}
+    <span class="t">${s.seconds ? s.seconds + "s" : "~" + s.target + "s"}</span></div>`).join("");
+}
+async function go(i) {
+  if (rec && rec.state === "recording") return;
+  cur = Math.max(0, Math.min(i, scenes.length - 1));
+  const s = scenes[cur];
+  blob = null; $("play").disabled = $("keep").disabled = true; $("msg").textContent = ""; $("timer").textContent = "0.0s";
+  $("timer").classList.remove("over");
+  $("kind").textContent = `${cur + 1} of ${scenes.length} · ${isFace(s) ? "🎥 Face + voice" : "🎙️ Voice only"} · aim for ~${s.target}s` + (s.done ? " · ✅ already recorded (record again to replace)" : "");
+  $("ask").textContent = s.ask;
+  $("mention").innerHTML = (s.mention || []).map(m => `<li>${m}</li>`).join("");
+  renderList();
+  await setupMedia(s);
+}
+async function setupMedia(s) {
+  if (stream) stream.getTracks().forEach(t => t.stop());
+  stream = null;
+  const p = $("preview"); p.className = "preview";
+  if (isFace(s)) {
+    p.innerHTML = `<video id="cam" autoplay muted playsinline style="transform:scaleX(-1)"></video>`;
+  } else if (s.visual.endsWith(".mp4")) {
+    p.classList.add("light");
+    p.innerHTML = `<video id="vis" src="/${s.visual}" muted playsinline loop></video>`;
+    $("vis").play();
+  } else {
+    p.innerHTML = `<img src="/${s.visual}">`;
+  }
+  try {
+    stream = await navigator.mediaDevices.getUserMedia(isFace(s)
+      ? { video: { width: 1920, height: 1080 }, audio: true } : { audio: true });
+  } catch (e) { $("msg").textContent = "⚠️ Allow camera/microphone access in the browser, then reload."; return; }
+  if (isFace(s) && $("cam")) $("cam").srcObject = stream;
+}
+function toggle() {
+  if (rec && rec.state === "recording") return rec.stop();
+  if (!stream) return;
+  chunks = []; rec = new MediaRecorder(stream);
+  rec.ondataavailable = e => chunks.push(e.data);
+  rec.onstop = () => {
+    clearInterval(tick);
+    blob = new Blob(chunks, { type: rec.mimeType });
+    $("playback").src = URL.createObjectURL(blob);
+    $("rec").textContent = "● Record again"; $("play").disabled = $("keep").disabled = false;
+    $("msg").textContent = "Play it back. Happy? Keep it. Not happy? Record again.";
+  };
+  const vis = $("vis"); if (vis) { vis.loop = false; vis.currentTime = 0; vis.play(); }
+  rec.start(); t0 = performance.now();
+  $("rec").textContent = "■ Stop"; $("play").disabled = $("keep").disabled = true; $("msg").textContent = "Recording…";
+  const target = scenes[cur].target;
+  tick = setInterval(() => {
+    const t = (performance.now() - t0) / 1000;
+    $("timer").textContent = t.toFixed(1) + "s"; $("timer").classList.toggle("over", t > target * 1.4);
+  }, 100);
+}
+function play() {
+  const s = scenes[cur];
+  if (isFace(s)) { const p = $("preview"); p.innerHTML = `<video controls autoplay src="${$("playback").src}"></video>`; return; }
+  const vis = $("vis"); if (vis) { vis.currentTime = 0; vis.play(); }
+  $("playback").currentTime = 0; $("playback").play();
+}
+async function keep() {
+  if (!blob) return;
+  const s = scenes[cur];
+  $("msg").textContent = "Saving…"; $("keep").disabled = true;
+  const r = await (await fetch(`/api/save?name=${encodeURIComponent(fileOf(s))}`, { method: "POST", body: blob })).json();
+  if (!r.ok) { $("msg").textContent = "⚠️ Couldn't save: " + r.error; $("keep").disabled = false; return; }
+  s.done = true; s.seconds = r.seconds;
+  const next = scenes.findIndex((x, i) => i > cur && !x.done);
+  go(next === -1 ? cur : next);
+}
+async function build() {
+  $("build").disabled = true; $("bmsg").textContent = "  Building… (about a minute)"; $("result").innerHTML = "";
+  const r = await (await fetch("/api/build", { method: "POST" })).json();
+  $("build").disabled = false; $("bmsg").textContent = r.ok ? "  Done!" : "  Something went wrong:";
+  $("result").innerHTML = (r.ok ? `<video controls style="width:100%;max-width:900px;border-radius:12px;margin-top:14px" src="/video/build/final.mp4?${Date.now()}"></video>` : "")
+    + `<pre>${r.log.replace(/</g, "&lt;")}</pre>`;
+}
+$("rec").onclick = toggle; $("play").onclick = play; $("keep").onclick = keep; $("skip").onclick = () => go(cur + 1); $("build").onclick = build;
+document.addEventListener("keydown", e => {
+  if (e.code === "Space") { e.preventDefault(); toggle(); }
+  if (e.code === "Enter" && !$("keep").disabled) { e.preventDefault(); keep(); }
+});
+load().then(() => go(Math.max(0, scenes.findIndex(s => !s.done))));
+</script>
+</body></html>

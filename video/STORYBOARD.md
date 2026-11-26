@@ -1,5 +1,16 @@
 # 🎬 Storyboard & Recording Guide: Second Life Passport
 
+## ⚡ Quick start: all you do is talk
+
+```bash
+cd ~/second-life-passport && python3 tools/studio.py
+```
+A page opens in your browser. For each of the 20 parts it shows **one question** and the key facts, plus what's on screen. Hit **Space** to record, answer in your own words, hit **Space** to stop, then **Enter** to keep it. 17 parts are voice only and 3 are face plus voice. When everything is ✅, click **🎞️ Build my video**. Then upload `video/build/final.mp4`.
+
+Everything else (sticker, phone demo, Repair Station, tap shot, slides, sources) is already made. The rest of this file is background you can skip.
+
+---
+
 **Target: about 4:30 total** (the challenge requires 3:00–5:00). The visuals are done. You add your voice and face.
 
 > **Why there's no word-for-word script:** the judging sheet says *"The pitch is done yourself, not with AI"* and requires your own voice. So each scene gives you **what's on screen**, **what to record**, and **talking points**. Say them however you'd say them to a friend. Practise each scene twice out loud, then record. Sounding natural beats sounding perfect, and judges can tell when someone is reading.
@@ -100,8 +111,8 @@ You can run it any time; missing scenes are skipped, so you can watch rough cuts
 **11 · The tap (✅ auto: `video/generated/11_tap.mp4`, ~4.5s)**
 *Visual:* Animated: a phone slides onto the sticker on a laptop lid and the passport opens. Nothing to record. To re-render it, run `node tools/make-tap.js`.
 
-**12 · Demo walkthrough (📱 `12_phone.mp4` + 🎙️ `12_vo.m4a`, ~30s)**
-*Visual:* iPhone screen recording: open the sticker page full-screen on your Mac → iPhone Camera app → point at it → tap the yellow link → passport opens → scroll slowly (2–3 seconds per section).
+**12 · Demo walkthrough (✅ auto clip `video/generated/12_phone.mp4` + 🎙️ `12_vo.m4a`, ~30s)**
+*Visual:* Generated: the passport scrolling on a phone (`node tools/make-demo-clips.js`). The studio plays it while you talk.
 *Record the voiceover while watching the clip play.* Talking points, one per section:
 - ✅ Verified badge: this record matches the official registry.
 - 🔋 Battery health, measured, plus the forecast in *school years*, which answers "will it quit?"
@@ -110,8 +121,8 @@ You can run it any time; missing scenes are skipped, so you can watch rough cuts
 - ✍️ A note from me, the student who fixed it.
 - 🤝 Help if anything breaks, and free Lenovo recycling at the end.
 
-**13 · Measured, not typed (🖥️/📱 `13_diagnostics.mov` + 🎙️ `13_vo.m4a`, ~10s)**
-*Visual:* Film the Chromebook's **Diagnostics → Battery** screen with your phone (open the launcher and search "Diagnostics"). Just film the screen; nothing gets changed on the laptop.
+**13 · Measured, not typed (✅ auto clip `video/generated/13_battery.mp4` + 🎙️ `13_vo.m4a`, ~10s)**
+*Visual:* Generated: slow zoom on the passport's battery card, including the "Demo passport" label.
 - In a real passport, these numbers come straight from the laptop itself. No one types "battery good."
 - Say once that the demo passport uses example numbers.
 
@@ -124,10 +135,8 @@ You can run it any time; missing scenes are skipped, so you can watch rough cuts
 - Real version: secure NFC chips that sign every tap, so copied stickers fail too.
 *(Optional upgrade: screen-record the tamper link live on your phone instead of the slide.)*
 
-**16 · The Repair Station (🖥️ `16_station.mov` with your voice, ~12s)**
-*Visual:* Mac screen recording. Open Terminal and run
-`curl -s https://mattjunior039.github.io/second-life-passport/health-check/mac.sh | bash`
-It reads your Mac's battery and opens the Repair Station filled in. Click **Issue passport** and the QR appears.
+**16 · The Repair Station (✅ auto clip `video/generated/16_station.mp4` + 🎙️ `16_vo.m4a`, ~12s)**
+*Visual:* Generated: the Repair Station filled in from a health check, then **Issue passport** and the QR appears.
 - A student fixer can issue a passport in about two minutes.
 - The battery numbers fill in automatically.
 

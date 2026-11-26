@@ -19,7 +19,6 @@ const records = JSON.parse(fs.readFileSync(path.join(dataDir, "records.json"), "
   for (const record of records) {
     const tampered = JSON.parse(JSON.stringify(record));
     tampered.battery.health = 99;
-    tampered.battery.cycles = 12;
     links[record.id] = {
       passport: `${root}p/?id=${record.id}`,
       tampered: `${root}p/#d=${await SLP.encode(tampered)}`,

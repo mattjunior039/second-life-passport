@@ -1,0 +1,29 @@
+{
+  "_help": "Order of the video. File names in 'visual'/'audio' are looked up in video/recordings/ first, then the project root. Target total ≈ 4:26 of talking (+~8s of automatic pauses).",
+  "scenes": [
+    {"id": "01-hook", "visual": "01_hook.mov", "target": 15},
+    {"id": "02-ewaste", "visual": "slides/png/S02.png", "audio": "02_vo.m4a", "target": 10},
+    {"id": "03-carbon", "visual": "slides/png/S03.png", "audio": "03_vo.m4a", "target": 10},
+    {"id": "04-300v200", "visual": "slides/png/S04.png", "audio": "04_vo.m4a", "target": 12},
+    {"id": "05-questions", "visual": "slides/png/S05.png", "audio": "05_vo.m4a", "target": 10},
+    {"id": "06-hidden", "visual": "slides/png/S06.png", "audio": "06_vo.m4a", "target": 12},
+    {"id": "07-insight", "visual": "07_insight.mov", "target": 7},
+    {"id": "08-battery", "visual": "slides/png/S08.png", "audio": "08_vo.m4a", "target": 10},
+    {"id": "09-persona", "visual": "slides/png/S13.png", "audio": "09_vo.m4a", "target": 10},
+    {"id": "10-intro", "visual": "slides/png/S09.png", "audio": "10_vo.m4a", "target": 10},
+    {"id": "11-tap", "visual": "11_tap.mov", "target": 6},
+    {"id": "12-demo", "visual": "12_phone.mp4", "audio": "12_vo.m4a", "layout": "phone", "target": 30},
+    {"id": "13-diag", "visual": "13_diagnostics.mov", "audio": "13_vo.m4a", "target": 10},
+    {"id": "14-forecast", "visual": "slides/png/S11.png", "audio": "14_vo.m4a", "target": 12},
+    {"id": "15-tamper", "visual": "slides/png/S12.png", "audio": "15_vo.m4a", "target": 12},
+    {"id": "16-station", "visual": "16_station.mov", "target": 12},
+    {"id": "17-fixers", "visual": "slides/png/S15.png", "audio": "17_vo.m4a", "target": 8},
+    {"id": "18-scale", "visual": "slides/png/S14.png", "audio": "18_vo.m4a", "target": 15},
+    {"id": "19-survey", "visual": "slides/png/S16.png", "audio": "19_vo.m4a", "target": 12},
+    {"id": "20-feedback", "visual": "slides/png/S17.png", "audio": "20_vo.m4a", "target": 12},
+    {"id": "21-lenovo", "visual": "slides/png/S18.png", "audio": "21_vo.m4a", "target": 12},
+    {"id": "22-close", "visual": "22_close.mov", "target": 10},
+    {"id": "23-endcard", "visual": "slides/png/S19.png", "hold": 4},
+    {"id": "24-sources", "visual": "slides/png/S20.png", "hold": 5}
+  ]
+}

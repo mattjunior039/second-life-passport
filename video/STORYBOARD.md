@@ -11,11 +11,11 @@
 1. **Battery numbers are done.** The demo passport uses example numbers typical of a 3-year-old school Chromebook (Lenovo 100e Chromebook Gen 3: **87% health, 380 cycles → about 1 school year left**). The passport shows a yellow "Demo passport" label, and you say "example numbers" once on camera (scene 13).
 2. **Your fixer note** is already in the passport, signed Neil Gupta. If you want it in your own words, send me 2–3 sentences and I'll swap it in.
 3. **Do the 10-minute feedback test. Don't skip it: "Feedback" is 1 of the 5 judging categories.** No survey needed.
-   - Show the sticker to **2 people** (a parent, a friend, a teacher). Don't explain anything. Hand them your phone or the sticker and watch them scan it.
+   - Show the sticker to **2 people** (a parent, a friend, a teacher). Open the [sticker page](https://mattjunior039.github.io/second-life-passport/sticker/) on your Mac, don't explain anything, and watch them scan it with their own phone camera.
    - Ask two questions: *"Would you trust this laptop more or less? Why?"* and *"What was confusing?"* Write down their exact words.
    - Pick **one thing to change** because of what each person said. Tell me and I'll make the change on the site.
    - Fill in the `feedback` part of `slides/config.json` (who, what they said, before, after), then run `node tools/make-slides.js`. **Never invent quotes.**
-4. **Print the sticker.** Step-by-step guide: [`sticker/PRINTING.md`](../sticker/PRINTING.md).
+4. **No printer needed.** The sticker lives on screen at https://mattjunior039.github.io/second-life-passport/sticker/. Open it on your Mac and scan it with your iPhone camera. The tap close-up (scene 11) is already animated in `video/generated/11_tap.mp4`. (If you ever print it, see [`sticker/PRINTING.md`](../sticker/PRINTING.md).)
 5. **Test the live links in a private/incognito window:**
    - Passport: https://mattjunior039.github.io/second-life-passport/p/?id=SLP-0042
    - Repair Station: https://mattjunior039.github.io/second-life-passport/create/
@@ -97,11 +97,11 @@ You can run it any time; missing scenes are skipped, so you can watch rough cuts
 - Name: Second Life Passport. Tagline: *Don't trust it. Tap it.*
 - A sticker on each refurbished laptop. Tap or scan, with no app and no account.
 
-**11 · The tap (🎥 `11_tap.mov`, ~6s)**
-*Visual:* Close-up: your phone tapping or scanning the sticker on the laptop and the passport popping up. Prop your Mac's camera or ask someone to film on their phone. No talking needed, or just "watch."
+**11 · The tap (✅ auto: `video/generated/11_tap.mp4`, ~4.5s)**
+*Visual:* Animated: a phone slides onto the sticker on a laptop lid and the passport opens. Nothing to record. To re-render it, run `node tools/make-tap.js`.
 
 **12 · Demo walkthrough (📱 `12_phone.mp4` + 🎙️ `12_vo.m4a`, ~30s)**
-*Visual:* iPhone screen recording: Camera app → scan sticker → passport opens → scroll slowly (2–3 seconds per section).
+*Visual:* iPhone screen recording: open the sticker page full-screen on your Mac → iPhone Camera app → point at it → tap the yellow link → passport opens → scroll slowly (2–3 seconds per section).
 *Record the voiceover while watching the clip play.* Talking points, one per section:
 - ✅ Verified badge: this record matches the official registry.
 - 🔋 Battery health, measured, plus the forecast in *school years*, which answers "will it quit?"
@@ -141,7 +141,7 @@ It reads your Mac's battery and opens the Repair Station filled in. Click **Issu
 - Cost: QR free, NFC under $1. Back to the opening: 300 trusted laptops instead of 200.
 
 **20 · Feedback → change (🎙️ S16, ~20s)**
-- Who you showed it to and how (handed them the sticker, said nothing, watched).
+- Who you showed it to and how (put the sticker on screen, said nothing, watched).
 - What each person said → what you changed because of it. Be specific.
 - *This is a whole rubric category (Feedback & Teamwork), so don't skip it.*
 
@@ -151,7 +151,7 @@ It reads your Mac's battery and opens the Repair Station filled in. Click **Issu
 - It plugs into what Lenovo already does: Certified Refurbished, Asset Recovery and take-back.
 
 **22 · Close (🎥 `22_close.mov`, ~10s)**
-*Visual:* You on camera, holding the sticker or tapping it one more time.
+*Visual:* You on camera, holding up your phone with the passport open toward the lens.
 - Tie back to the hook (the Carfax line).
 - End on the tagline: **Don't trust it. Tap it.**
 

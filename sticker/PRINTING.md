@@ -1,5 +1,7 @@
 # 🖨️ Printing the sticker (step by step)
 
+> **No printer? Skip this file.** Use the on-screen sticker at https://mattjunior039.github.io/second-life-passport/sticker/ and the animated tap clip (`node tools/make-tap.js`).
+
 **File:** `sticker/sticker-sheet-avery22807.pdf`, a single US Letter page with **12 identical stickers**. Each one is exactly **2 inches (5.1 cm)** across, and every QR code opens passport SLP-0042.
 
 ## 1. Pick your paper

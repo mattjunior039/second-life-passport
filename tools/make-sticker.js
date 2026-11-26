@@ -54,6 +54,18 @@ fs.writeFileSync(path.join(out, "sticker.html"), `<!doctype html><html><head><st
 html,body{margin:0;background:transparent}svg{display:block;width:1200px;height:1200px}
 </style></head><body>${svg}</body></html>\n`);
 
+// On-screen sticker for scanning straight off a laptop screen (no printer needed).
+const screenDir = path.join(__dirname, "..", "docs", "sticker");
+fs.mkdirSync(screenDir, { recursive: true });
+fs.writeFileSync(path.join(screenDir, "index.html"), `<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Second Life Passport · ${id} sticker</title>
+<style>
+html,body{margin:0;height:100%;background:#2b2d31;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3vh}
+svg{width:min(72vh,72vw);height:min(72vh,72vw);filter:drop-shadow(0 12px 30px rgba(0,0,0,.45))}
+p{margin:0;color:#c9ccd1;font-size:clamp(14px,2.4vh,22px)}
+</style></head><body>${svg}<p>Point your phone camera at the sticker</p></body></html>\n`);
+
 // Avery 22807: 2" round, 3 x 4, letter. Left margin 0.625", top 0.625", pitch 2.625" x 2.5".
 const cells = Array.from({ length: 12 }, (_, i) => {
   const c = i % 3, r = Math.floor(i / 3);

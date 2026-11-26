@@ -11,7 +11,7 @@
     {"id": "08-battery", "visual": "slides/png/S08.png", "audio": "08_vo.m4a", "target": 10},
     {"id": "09-persona", "visual": "slides/png/S13.png", "audio": "09_vo.m4a", "target": 10},
     {"id": "10-intro", "visual": "slides/png/S09.png", "audio": "10_vo.m4a", "target": 10},
-    {"id": "11-tap", "visual": "11_tap.mov", "target": 6},
+    {"id": "11-tap", "visual": "video/generated/11_tap.mp4", "target": 5},
     {"id": "12-demo", "visual": "12_phone.mp4", "audio": "12_vo.m4a", "layout": "phone", "target": 30},
     {"id": "13-diag", "visual": "13_diagnostics.mov", "audio": "13_vo.m4a", "target": 10},
     {"id": "14-forecast", "visual": "slides/png/S11.png", "audio": "14_vo.m4a", "target": 12},

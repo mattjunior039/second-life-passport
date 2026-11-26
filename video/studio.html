@@ -14,6 +14,9 @@ aside .bar div{height:100%;background:#22c55e}
 main{overflow:auto;padding:28px 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-content:start}
 .kind{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#e1251b}
 h2{font-size:34px;line-height:1.2;margin:10px 0 18px}
+.say{font-size:30px;line-height:1.45;font-weight:500;margin:12px 0 18px;background:#fff;border-radius:14px;padding:20px 24px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.say mark{background:#fde68a;padding:0 4px;border-radius:4px}
+.q{font-size:15px;color:#6b7280;margin:6px 0 0}
 ul{margin:0 0 20px;padding-left:20px;font-size:18px;line-height:1.55;color:#374151}
 .hint{font-size:14px;color:#6b7280;margin-bottom:20px}
 .preview{background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
@@ -41,9 +44,9 @@ kbd{background:#fff;border:1px solid #ccc;border-radius:4px;padding:1px 6px;font
 <main>
   <section>
     <div class="kind" id="kind"></div>
-    <h2 id="ask"></h2>
-    <ul id="mention"></ul>
-    <p class="hint">Read the question, then answer it out loud in your own words, like you're telling a friend. Hit the target time, roughly. Redo as many times as you want.</p>
+    <p class="q" id="ask"></p>
+    <div class="say" id="say"></div>
+    <p class="hint">Read it out loud like you're telling a friend; change any words that don't sound like you. Redo as many times as you want. <span style="background:#fde68a">Yellow</span> = fill in with your real answer.</p>
     <div class="controls">
       <button class="rec" id="rec">● Record</button>
       <span class="timer" id="timer">0.0s</span>
@@ -93,8 +96,8 @@ async function go(i) {
   blob = null; $("play").disabled = $("keep").disabled = true; $("msg").textContent = ""; $("timer").textContent = "0.0s";
   $("timer").classList.remove("over");
   $("kind").textContent = `${cur + 1} of ${scenes.length} · ${isFace(s) ? "🎥 Face + voice" : "🎙️ Voice only"} · aim for ~${s.target}s` + (s.done ? " · ✅ already recorded (record again to replace)" : "");
-  $("ask").textContent = s.ask;
-  $("mention").innerHTML = (s.mention || []).map(m => `<li>${m}</li>`).join("");
+  $("ask").textContent = s.say ? "" : s.ask;
+  $("say").innerHTML = (s.say || (s.mention || []).join(" · ")).replace(/</g, "&lt;").replace(/\[([^\]]+)\]/g, "<mark>$1</mark>");
   renderList();
   await setupMedia(s);
 }

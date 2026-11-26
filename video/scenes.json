@@ -1,68 +1,280 @@
 {
-  "_help": "Order of the video. File names in 'visual'/'audio' are looked up in video/recordings/ first, then the project root. 'ask'/'mention' are the prompts shown in the recording studio (python3 tools/studio.py) — answer in your own words.",
-  "scenes": [
-    {"id": "01-hook", "visual": "01_hook.mov", "target": 15,
-     "ask": "When you buy a used car, you get a Carfax. What do you get when you buy a used laptop?",
-     "mention": ["Start talking right away — no \"Hi, my name is\"", "At the end: your name and that you fix school laptops"]},
-    {"id": "02-ewaste", "visual": "slides/png/S02.png", "audio": "02_vo.m4a", "target": 10,
-     "ask": "How big is the e-waste problem?",
-     "mention": ["62 million tonnes of e-waste in 2022", "only about 22% properly recycled", "heading to 82 million tonnes by 2030"]},
-    {"id": "03-carbon", "visual": "slides/png/S03.png", "audio": "03_vo.m4a", "target": 10,
-     "ask": "Why is the greenest laptop the one that already exists?",
-     "mention": ["most of a laptop's carbon is spent making it", "about three quarters, in one manufacturer's report"]},
-    {"id": "04-300v200", "visual": "slides/png/S04.png", "audio": "04_vo.m4a", "target": 12,
-     "ask": "What does a school get for the same money if it buys refurbished?",
-     "mention": ["KnoPro's scenario: 200 new or 300 refurbished", "that's 100 more kids with a laptop", "so why do people hesitate?"]},
-    {"id": "05-questions", "visual": "slides/png/S05.png", "audio": "05_vo.m4a", "target": 10,
-     "ask": "What did families actually ask about refurbished laptops?",
-     "mention": ["\"Who had it before?\"", "\"Will it quit?\"", "nobody asked about price, so it's about trust"]},
-    {"id": "06-hidden", "visual": "slides/png/S06.png", "audio": "06_vo.m4a", "target": 12,
-     "ask": "What does Lenovo already do to refurbished laptops that buyers never get to see?",
-     "mention": ["replaces batteries under 80% health or over 750 cycles", "wipes data to NIST standards", "adds a battery warranty", "but the family holding the laptop can't see any of it"]},
-    {"id": "07-insight", "visual": "07_insight.mov", "target": 7,
-     "ask": "In one sentence: what's the real problem with reused tech?",
-     "mention": ["It's not quality. It's proof.", "Say it slowly, looking right at the camera"]},
-    {"id": "08-battery", "visual": "slides/png/S08.png", "audio": "08_vo.m4a", "target": 10,
-     "ask": "What do people buying used devices care about most?",
-     "mention": ["Assurant's 2026 survey of 1,200+ used-device buyers", "battery health ranked #1, just ahead of price", "78% call seller trust a major concern"]},
-    {"id": "09-persona", "visual": "slides/png/S13.png", "audio": "09_vo.m4a", "target": 10,
-     "ask": "Who is this for? Describe Rosa.",
-     "mention": ["she's imagined, so say \"picture\" or \"imagine\"", "works two jobs, got burned by a used phone", "won't download an app, but will point her camera at a sticker"]},
-    {"id": "10-intro", "visual": "slides/png/S09.png", "audio": "10_vo.m4a", "target": 10,
-     "ask": "What did you build?",
-     "mention": ["Second Life Passport", "a sticker on every refurbished laptop", "tap or scan: no app, no account", "\"Don't trust it. Tap it.\""]},
-    {"id": "11-tap", "visual": "video/generated/11_tap.mp4", "target": 5},
-    {"id": "12-demo", "visual": "video/generated/12_phone.mp4", "audio": "12_vo.m4a", "layout": "phone", "target": 30,
-     "ask": "Walk us through the passport as it scrolls.",
-     "mention": ["✅ verified: matches the official record", "🔋 battery health + forecast in school years → \"will it quit?\"", "🔒 old owner's data erased → \"who had it before?\"", "🛠️ what was repaired and tested", "✍️ a note from you, the student who fixed it", "🤝 help if it breaks + free Lenovo recycling"]},
-    {"id": "13-diag", "visual": "video/generated/13_battery.mp4", "audio": "13_vo.m4a", "layout": "phone", "target": 10,
-     "ask": "Where do the battery numbers come from?",
-     "mention": ["the laptop's own diagnostics, so nobody types \"battery good\"", "say this demo uses example numbers for a 3-year-old Chromebook"]},
-    {"id": "14-forecast", "visual": "slides/png/S11.png", "audio": "14_vo.m4a", "target": 12,
-     "ask": "How does the school-year forecast work, in plain words?",
-     "mention": ["how much it wears per charge", "how many charges until 80%", "divided by school days", "it's an estimate"]},
-    {"id": "15-tamper", "visual": "slides/png/S12.png", "audio": "15_vo.m4a", "target": 12,
-     "ask": "Can't someone just fake a passport?",
-     "mention": ["change one number (87 → 99%) and it shows \"Altered record\"", "the real version uses secure NFC chips that sign every tap"]},
-    {"id": "16-station", "visual": "video/generated/16_station.mp4", "audio": "16_vo.m4a", "target": 12,
-     "ask": "How does a student fixer make a passport?",
-     "mention": ["the health check fills in the battery numbers automatically", "click Issue passport and the QR appears", "about two minutes per laptop"]},
-    {"id": "17-fixers", "visual": "slides/png/S15.png", "audio": "17_vo.m4a", "target": 8,
-     "ask": "What do the student fixers get out of it?",
-     "mention": ["every passport is signed proof of real repair skills", "something to put on a résumé"]},
-    {"id": "18-scale", "visual": "slides/png/S14.png", "audio": "18_vo.m4a", "target": 15,
-     "ask": "How does this work beyond one school? Follow the arrows on the slide.",
-     "mention": ["district retires laptops → student desk or Lenovo Asset Recovery refurbishes", "passport fills in → families", "Lenovo takes it back at end of life", "QR costs nothing, NFC under $1", "300 trusted laptops instead of 200"]},
-    {"id": "20-feedback", "visual": "slides/png/S16.png", "audio": "20_vo.m4a", "target": 20,
-     "ask": "Who did you show it to, what did they say, and what did you change because of it?",
-     "mention": ["use their real words", "one change per person", "⚠️ show 2 people the sticker page first, and send me their quotes for the slide"]},
-    {"id": "21-lenovo", "visual": "slides/png/S17.png", "audio": "21_vo.m4a", "target": 12,
-     "ask": "Why is Lenovo the right company for this, right now?",
-     "mention": ["new ThinkPads score 10/10 for repairability", "EU rules from Feb 2027: QR codes on batteries + replaceable batteries", "fits Certified Refurbished, Asset Recovery and take-back"]},
-    {"id": "22-close", "visual": "22_close.mov", "target": 10,
-     "ask": "Bring it back to the used-car Carfax. Why can someone trust a used laptop now?",
-     "mention": ["hold your phone up showing the passport", "end on: \"Don't trust it. Tap it.\""]},
-    {"id": "23-endcard", "visual": "slides/png/S18.png", "hold": 4},
-    {"id": "24-sources", "visual": "slides/png/S19.png", "hold": 5}
-  ]
+ "_help": "Order of the video. File names in 'visual'/'audio' are looked up in video/recordings/ first, then the project root. 'say' is the script line, 'ask'/'mention' are the prompts shown in the recording studio (python3 tools/studio.py) — answer in your own words.",
+ "scenes": [
+  {
+   "id": "01-hook",
+   "visual": "01_hook.mov",
+   "target": 15,
+   "ask": "When you buy a used car, you get a Carfax. What do you get when you buy a used laptop?",
+   "mention": [
+    "Start talking right away — no \"Hi, my name is\"",
+    "At the end: your name and that you fix school laptops"
+   ],
+   "say": "When you buy a used car, you get a Carfax: every owner, every accident, the mileage. When you buy a used laptop from your school? Nothing. You just hope it doesn't die in a month. I'm Neil Gupta, I fix school laptops, and I think that's fixable."
+  },
+  {
+   "id": "02-ewaste",
+   "visual": "slides/png/S02.png",
+   "audio": "02_vo.m4a",
+   "target": 10,
+   "ask": "How big is the e-waste problem?",
+   "mention": [
+    "62 million tonnes of e-waste in 2022",
+    "only about 22% properly recycled",
+    "heading to 82 million tonnes by 2030"
+   ],
+   "say": "In 2022, the world threw out 62 million tonnes of e-waste. Only about 22 percent was properly recycled, and by 2030 it's heading to 82 million."
+  },
+  {
+   "id": "03-carbon",
+   "visual": "slides/png/S03.png",
+   "audio": "03_vo.m4a",
+   "target": 10,
+   "ask": "Why is the greenest laptop the one that already exists?",
+   "mention": [
+    "most of a laptop's carbon is spent making it",
+    "about three quarters, in one manufacturer's report"
+   ],
+   "say": "And here's the thing: most of a laptop's carbon, about three quarters in one manufacturer's report, is spent making it. So the greenest laptop is the one that already exists."
+  },
+  {
+   "id": "04-300v200",
+   "visual": "slides/png/S04.png",
+   "audio": "04_vo.m4a",
+   "target": 12,
+   "ask": "What does a school get for the same money if it buys refurbished?",
+   "mention": [
+    "KnoPro's scenario: 200 new or 300 refurbished",
+    "that's 100 more kids with a laptop",
+    "so why do people hesitate?"
+   ],
+   "say": "KnoPro's own example: for the same money, a school can buy 200 new laptops or 300 refurbished ones. That's a hundred more kids with a laptop. So why do people hesitate?"
+  },
+  {
+   "id": "05-questions",
+   "visual": "slides/png/S05.png",
+   "audio": "05_vo.m4a",
+   "target": 10,
+   "ask": "What did families actually ask about refurbished laptops?",
+   "mention": [
+    "\"Who had it before?\"",
+    "\"Will it quit?\"",
+    "nobody asked about price, so it's about trust"
+   ],
+   "say": "When families were asked, they had two questions. \"Who had it before?\" and \"Will it quit?\" Nobody asked about price. It's not about money. It's about trust."
+  },
+  {
+   "id": "06-hidden",
+   "visual": "slides/png/S06.png",
+   "audio": "06_vo.m4a",
+   "target": 12,
+   "ask": "What does Lenovo already do to refurbished laptops that buyers never get to see?",
+   "mention": [
+    "replaces batteries under 80% health or over 750 cycles",
+    "wipes data to NIST standards",
+    "adds a battery warranty",
+    "but the family holding the laptop can't see any of it"
+   ],
+   "say": "And those questions already have answers. Lenovo's certified refurb replaces weak batteries, wipes data to NIST standards, and adds a battery warranty. But the family holding the laptop can't see any of that."
+  },
+  {
+   "id": "07-insight",
+   "visual": "07_insight.mov",
+   "target": 7,
+   "ask": "In one sentence: what's the real problem with reused tech?",
+   "mention": [
+    "It's not quality. It's proof.",
+    "Say it slowly, looking right at the camera"
+   ],
+   "say": "So reuse doesn't have a quality problem. It has a proof problem."
+  },
+  {
+   "id": "08-battery",
+   "visual": "slides/png/S08.png",
+   "audio": "08_vo.m4a",
+   "target": 10,
+   "ask": "What do people buying used devices care about most?",
+   "mention": [
+    "Assurant's 2026 survey of 1,200+ used-device buyers",
+    "battery health ranked #1, just ahead of price",
+    "78% call seller trust a major concern"
+   ],
+   "say": "And proof matters most for the battery. In Assurant's 2026 survey of over 1,200 used-device buyers, battery health ranked number one, ahead of price, and 78 percent said seller trust was a major concern."
+  },
+  {
+   "id": "09-persona",
+   "visual": "slides/png/S13.png",
+   "audio": "09_vo.m4a",
+   "target": 10,
+   "ask": "Who is this for? Describe Rosa.",
+   "mention": [
+    "she's imagined, so say \"picture\" or \"imagine\"",
+    "works two jobs, got burned by a used phone",
+    "won't download an app, but will point her camera at a sticker"
+   ],
+   "say": "Picture Rosa. She works two jobs, she's been burned by a used phone before, and she is not downloading another app. But she will point her camera at a sticker."
+  },
+  {
+   "id": "10-intro",
+   "visual": "slides/png/S09.png",
+   "audio": "10_vo.m4a",
+   "target": 10,
+   "ask": "What did you build?",
+   "mention": [
+    "Second Life Passport",
+    "a sticker on every refurbished laptop",
+    "tap or scan: no app, no account",
+    "\"Don't trust it. Tap it.\""
+   ],
+   "say": "So I built Second Life Passport. A sticker on every refurbished laptop. Tap it or scan it. No app, no account. Don't trust it. Tap it."
+  },
+  {
+   "id": "11-tap",
+   "visual": "video/generated/11_tap.mp4",
+   "target": 5
+  },
+  {
+   "id": "12-demo",
+   "visual": "video/generated/12_phone.mp4",
+   "audio": "12_vo.m4a",
+   "layout": "phone",
+   "target": 30,
+   "ask": "Walk us through the passport as it scrolls.",
+   "mention": [
+    "✅ verified: matches the official record",
+    "🔋 battery health + forecast in school years → \"will it quit?\"",
+    "🔒 old owner's data erased → \"who had it before?\"",
+    "🛠️ what was repaired and tested",
+    "✍️ a note from you, the student who fixed it",
+    "🤝 help if it breaks + free Lenovo recycling"
+   ],
+   "say": "Here's what Rosa sees. Verified: this matches the official record. The battery: 87 percent health, and a forecast in school years. That answers \"will it quit?\" Clean slate: the last owner's data was erased and checked. That answers \"who had it before?\" Then what got repaired, a note from me, the student who fixed it, and help if anything breaks, plus free Lenovo recycling at the end."
+  },
+  {
+   "id": "13-diag",
+   "visual": "video/generated/13_battery.mp4",
+   "audio": "13_vo.m4a",
+   "layout": "phone",
+   "target": 10,
+   "ask": "Where do the battery numbers come from?",
+   "mention": [
+    "the laptop's own diagnostics, so nobody types \"battery good\"",
+    "say this demo uses example numbers for a 3-year-old Chromebook"
+   ],
+   "say": "Nobody types in \"battery's good.\" In a real passport, these numbers come straight from the laptop's own diagnostics. The ones in this demo are example numbers for a three-year-old Chromebook."
+  },
+  {
+   "id": "14-forecast",
+   "visual": "slides/png/S11.png",
+   "audio": "14_vo.m4a",
+   "target": 12,
+   "ask": "How does the school-year forecast work, in plain words?",
+   "mention": [
+    "how much it wears per charge",
+    "how many charges until 80%",
+    "divided by school days",
+    "it's an estimate"
+   ],
+   "say": "The forecast is simple math: how much the battery wears per charge, how many charges are left before 80 percent, divided by school days. It's an estimate, and it says so."
+  },
+  {
+   "id": "15-tamper",
+   "visual": "slides/png/S12.png",
+   "audio": "15_vo.m4a",
+   "target": 12,
+   "ask": "Can't someone just fake a passport?",
+   "mention": [
+    "change one number (87 → 99%) and it shows \"Altered record\"",
+    "the real version uses secure NFC chips that sign every tap"
+   ],
+   "say": "Can't someone fake it? Every passport has a digital fingerprint. Change one number, 87 to 99 percent, and it shows \"Altered record.\" The real version uses secure NFC chips that sign every tap, so copied stickers fail too."
+  },
+  {
+   "id": "16-station",
+   "visual": "video/generated/16_station.mp4",
+   "audio": "16_vo.m4a",
+   "target": 12,
+   "ask": "How does a student fixer make a passport?",
+   "mention": [
+    "the health check fills in the battery numbers automatically",
+    "click Issue passport and the QR appears",
+    "about two minutes per laptop"
+   ],
+   "say": "Making a passport takes a student fixer about two minutes. A health check fills in the battery automatically, you add the repairs, hit Issue passport, done."
+  },
+  {
+   "id": "17-fixers",
+   "visual": "slides/png/S15.png",
+   "audio": "17_vo.m4a",
+   "target": 8,
+   "ask": "What do the student fixers get out of it?",
+   "mention": [
+    "every passport is signed proof of real repair skills",
+    "something to put on a résumé"
+   ],
+   "say": "And every passport is signed by the student who did the work. Real proof of real repair skills, right on their résumé."
+  },
+  {
+   "id": "18-scale",
+   "visual": "slides/png/S14.png",
+   "audio": "18_vo.m4a",
+   "target": 15,
+   "ask": "How does this work beyond one school? Follow the arrows on the slide.",
+   "mention": [
+    "district retires laptops → student desk or Lenovo Asset Recovery refurbishes",
+    "passport fills in → families",
+    "Lenovo takes it back at end of life",
+    "QR costs nothing, NFC under $1",
+    "300 trusted laptops instead of 200"
+   ],
+   "say": "Here's how it scales. A district retires its laptops. A student repair desk or Lenovo Asset Recovery refurbishes them, and the passport fills itself in. Families get them, and at the end, Lenovo takes them back. QR is free, NFC is under a dollar, and that's 300 trusted laptops instead of 200."
+  },
+  {
+   "id": "20-feedback",
+   "visual": "slides/png/S16.png",
+   "audio": "20_vo.m4a",
+   "target": 20,
+   "ask": "Who did you show it to, what did they say, and what did you change because of it?",
+   "mention": [
+    "use their real words",
+    "one change per person",
+    "⚠️ show 2 people the sticker page first, and send me their quotes for the slide"
+   ],
+   "say": "I showed it to [PERSON 1] and [PERSON 2] without explaining anything, and just watched. [PERSON 1] said \"[THEIR EXACT WORDS],\" so I [WHAT YOU CHANGED]. [PERSON 2] said \"[THEIR EXACT WORDS],\" so I [WHAT YOU CHANGED]."
+  },
+  {
+   "id": "21-lenovo",
+   "visual": "slides/png/S17.png",
+   "audio": "21_vo.m4a",
+   "target": 12,
+   "ask": "Why is Lenovo the right company for this, right now?",
+   "mention": [
+    "new ThinkPads score 10/10 for repairability",
+    "EU rules from Feb 2027: QR codes on batteries + replaceable batteries",
+    "fits Certified Refurbished, Asset Recovery and take-back"
+   ],
+   "say": "Why Lenovo? New ThinkPads score 10 out of 10 for repairability. From February 2027, EU rules require QR codes on batteries and batteries you can replace. And this plugs right into Lenovo's Certified Refurbished, Asset Recovery, and take-back programs."
+  },
+  {
+   "id": "22-close",
+   "visual": "22_close.mov",
+   "target": 10,
+   "ask": "Bring it back to the used-car Carfax. Why can someone trust a used laptop now?",
+   "mention": [
+    "hold your phone up showing the passport",
+    "end on: \"Don't trust it. Tap it.\""
+   ],
+   "say": "A used car comes with a Carfax. Now a used laptop can come with a passport. Don't trust it. Tap it."
+  },
+  {
+   "id": "23-endcard",
+   "visual": "slides/png/S18.png",
+   "hold": 4
+  },
+  {
+   "id": "24-sources",
+   "visual": "slides/png/S19.png",
+   "hold": 5
+  }
+ ]
 }

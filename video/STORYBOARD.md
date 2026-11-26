@@ -5,7 +5,7 @@
 ```bash
 cd ~/second-life-passport && python3 tools/studio.py
 ```
-A page opens in your browser. For each of the 20 parts it shows **one question** and the key facts, plus what's on screen. Hit **Space** to record, answer in your own words, hit **Space** to stop, then **Enter** to keep it. 17 parts are voice only and 3 are face plus voice. When everything is ✅, click **🎞️ Build my video**. Then upload `video/build/final.mp4`.
+A page opens in your browser. For each of the 20 parts it shows **your line as a teleprompter** (full script: [`SCRIPT.md`](SCRIPT.md)) plus what's on screen. Hit **Space** to record, read it, hit **Space** to stop, then **Enter** to keep it. Fill in the yellow feedback blanks in part 18 with what real people said. 17 parts are voice only and 3 are face plus voice. When everything is ✅, click **🎞️ Build my video**. Then upload `video/build/final.mp4`.
 
 Everything else (sticker, phone demo, Repair Station, tap shot, slides, sources) is already made. The rest of this file is background you can skip.
 

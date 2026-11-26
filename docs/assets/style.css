@@ -54,6 +54,7 @@ a { color: var(--red-dark); }
 .forecast.new { background: #e6f4ec; color: var(--good); }
 .forecast small { display: block; font-weight: 500; font-size: 13px; color: var(--muted); margin-top: 4px; }
 .source { font-size: 12px; color: var(--muted); margin-top: 10px; }
+.source.demo { color: #92400e; background: #fef3c7; border-radius: 8px; padding: 8px 10px; }
 
 .row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 15px; }
 .row:first-of-type { border-top: 0; }

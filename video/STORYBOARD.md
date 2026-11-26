@@ -1,6 +1,6 @@
 # 🎬 Storyboard & Recording Guide: Second Life Passport
 
-**Target: about 4:35 total** (the challenge requires 3:00–5:00). The visuals are done. You add your voice and face.
+**Target: about 4:30 total** (the challenge requires 3:00–5:00). The visuals are done. You add your voice and face.
 
 > **Why there's no word-for-word script:** the judging sheet says *"The pitch is done yourself, not with AI"* and requires your own voice. So each scene gives you **what's on screen**, **what to record**, and **talking points**. Say them however you'd say them to a friend. Practise each scene twice out loud, then record. Sounding natural beats sounding perfect, and judges can tell when someone is reading.
 
@@ -8,11 +8,14 @@
 
 ## 0. Before you record (one evening)
 
-1. **Get your real battery numbers.** On your Lenovo school Chromebook, open the launcher, search **Diagnostics**, and write down **Battery health %**, **Cycle count** and the exact model (Settings → About ChromeOS → Diagnostics, or the label on the bottom). Send them to me and I'll update the passport, sticker and slides. If you can't, the demo uses example numbers and you must say *"example data"* on camera.
-2. **Write your own fixer note** (2–3 sentences, the "Note from the student who fixed it"). Send it to me and I'll put it in the passport.
-3. **Run the survey** (Google Form, GAME_PLAN §8) and **post to KnoPro mentors** (GAME_PLAN §9). Put the results in `slides/config.json`, then run `node tools/make-slides.js`. Yellow "FILL IN" boxes disappear once filled. **Never invent numbers or quotes.** If you only get 12 responses, say 12.
-4. **Print the sticker:** `sticker/sticker-sheet-avery22807.pdf` (Avery 22807 2″ round labels, or plain paper + tape). Print at **100% / Actual size**. Optional: a $0.30 NTAG215 NFC sticker behind it, programmed with the free *NFC Tools* app to the same link, makes the "tap" real.
-   ⚠️ Don't stick anything on the school Chromebook. Stick it on a card and hold it next to the laptop, or put it on your own MacBook.
+1. **Battery numbers are done.** The demo passport uses example numbers typical of a 3-year-old school Chromebook (Lenovo 100e Chromebook Gen 3: **87% health, 380 cycles → about 1 school year left**). The passport shows a yellow "Demo passport" label, and you say "example numbers" once on camera (scene 13).
+2. **Your fixer note** is already in the passport, signed Neil Gupta. If you want it in your own words, send me 2–3 sentences and I'll swap it in.
+3. **Do the 10-minute feedback test. Don't skip it: "Feedback" is 1 of the 5 judging categories.** No survey needed.
+   - Show the sticker to **2 people** (a parent, a friend, a teacher). Don't explain anything. Hand them your phone or the sticker and watch them scan it.
+   - Ask two questions: *"Would you trust this laptop more or less? Why?"* and *"What was confusing?"* Write down their exact words.
+   - Pick **one thing to change** because of what each person said. Tell me and I'll make the change on the site.
+   - Fill in the `feedback` part of `slides/config.json` (who, what they said, before, after), then run `node tools/make-slides.js`. **Never invent quotes.**
+4. **Print the sticker.** Step-by-step guide: [`sticker/PRINTING.md`](../sticker/PRINTING.md).
 5. **Test the live links in a private/incognito window:**
    - Passport: https://mattjunior039.github.io/second-life-passport/p/?id=SLP-0042
    - Repair Station: https://mattjunior039.github.io/second-life-passport/create/
@@ -108,15 +111,16 @@ You can run it any time; missing scenes are skipped, so you can watch rough cuts
 - 🤝 Help if anything breaks, and free Lenovo recycling at the end.
 
 **13 · Measured, not typed (🖥️/📱 `13_diagnostics.mov` + 🎙️ `13_vo.m4a`, ~10s)**
-*Visual:* Film the Chromebook's **Diagnostics → Battery** screen with your phone (or a screenshot).
-- These numbers come straight from the laptop itself. No one types "battery good."
+*Visual:* Film the Chromebook's **Diagnostics → Battery** screen with your phone (open the launcher and search "Diagnostics"). Just film the screen; nothing gets changed on the laptop.
+- In a real passport, these numbers come straight from the laptop itself. No one types "battery good."
+- Say once that the demo passport uses example numbers.
 
 **14 · Forecast math (🎙️ S11, ~12s)**
 - Walk through the math in plain words: how much it's worn per charge, how many charges until 80%, divided by school days.
 - Label it as an estimate.
 
 **15 · Can't someone fake it? (🎙️ S12, ~12s)**
-- Change even one number (93 → 99%) and the fingerprint breaks, so it shows "Altered record."
+- Change even one number (87 → 99%) and the fingerprint breaks, so it shows "Altered record."
 - Real version: secure NFC chips that sign every tap, so copied stickers fail too.
 *(Optional upgrade: screen-record the tamper link live on your phone instead of the slide.)*
 
@@ -136,15 +140,12 @@ It reads your Mac's battery and opens the Repair Station filled in. Click **Issu
 - Walk the arrows: district retires laptops → student desk or Lenovo Asset Recovery refurbishes → passport auto-fills → families → Lenovo take-back at end of life.
 - Cost: QR free, NFC under $1. Back to the opening: 300 trusted laptops instead of 200.
 
-**19 · Survey (🎙️ S16, ~12s)**
-- How many people you asked and how (group chats, Instagram story).
-- The one result that surprised you most.
-
-**20 · Feedback → change (🎙️ S17, ~12s)**
-- What a mentor or survey said → what you changed because of it. Be specific, e.g. "people didn't get '86% health,' so I added the school-years forecast."
+**20 · Feedback → change (🎙️ S16, ~20s)**
+- Who you showed it to and how (handed them the sticker, said nothing, watched).
+- What each person said → what you changed because of it. Be specific.
 - *This is a whole rubric category (Feedback & Teamwork), so don't skip it.*
 
-**21 · Why Lenovo, why now (🎙️ S18, ~12s)**
+**21 · Why Lenovo, why now (🎙️ S17, ~12s)**
 - New ThinkPads score 10/10 for repairability, so the passport can say "swap the battery yourself."
 - EU rules from Feb 2027: QR codes on batteries and replaceable batteries. Passports are ready.
 - It plugs into what Lenovo already does: Certified Refurbished, Asset Recovery and take-back.
@@ -154,14 +155,14 @@ It reads your Mac's battery and opens the Repair Station filled in. Click **Issu
 - Tie back to the hook (the Carfax line).
 - End on the tagline: **Don't trust it. Tap it.**
 
-**23 · End card (S19, auto, 4s)** · **24 · Sources (S20, auto, 5s)**
+**23 · End card (S18, auto, 4s)** · **24 · Sources (S19, auto, 5s)**
 
 ---
 
 ## 4. Final checklist before you submit
 - [ ] 3:00–5:00 (the assembler tells you)
 - [ ] Your own voice throughout, with no music or background noise
-- [ ] All FILL-IN boxes gone (survey + feedback are real)
+- [ ] All FILL-IN boxes gone (feedback is real)
 - [ ] Watched once all the way through with headphones
 - [ ] Uploaded (YouTube *Unlisted* or Google Drive "Anyone with the link") and **opened in an incognito window** to confirm it plays
 - [ ] Live demo link works in incognito

@@ -1,29 +1,25 @@
 {
-  "_help": "Edit this file, then run: node tools/make-slides.js. Anything still set to null or \"\" shows up on the slide as a yellow FILL-IN box so you can't miss it.",
-  "name": "Matthew",
+  "_help": "Edit this file, then run: node tools/make-slides.js. Anything still empty shows up on the slide as a yellow FILL-IN box so you cannot miss it.",
+  "name": "Neil Gupta",
   "school_line": "",
   "site": "mattjunior039.github.io/second-life-passport",
   "demo": {
-    "model": "Lenovo 300e Chromebook (2nd Gen)",
-    "health": 93,
-    "cycles": 140
-  },
-  "survey": {
-    "responses": null,
-    "would_take_pct": null,
-    "forecast_helps_pct": null,
-    "student_fixer_more_pct": null,
-    "student_fixer_less_pct": null,
-    "worries": [
-      { "label": "Battery dying", "pct": null },
-      { "label": "Previous owner's data", "pct": null },
-      { "label": "Breaks with no help", "pct": null },
-      { "label": "Looks worn", "pct": null }
-    ],
-    "quote": ""
+    "model": "Lenovo 100e Chromebook Gen 3",
+    "health": 87,
+    "cycles": 380
   },
   "feedback": [
-    { "who": "KnoPro mentor", "said": "", "before": "", "after": "" },
-    { "who": "Survey", "said": "", "before": "", "after": "" }
+    {
+      "who": "Person 1 (e.g. a parent)",
+      "said": "",
+      "before": "",
+      "after": ""
+    },
+    {
+      "who": "Person 2 (e.g. a friend or teacher)",
+      "said": "",
+      "before": "",
+      "after": ""
+    }
   ]
 }

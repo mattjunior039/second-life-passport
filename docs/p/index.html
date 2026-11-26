@@ -77,7 +77,7 @@ window.addEventListener("hashchange", () => location.reload());
     <div class="row" style="margin-top:8px"><span class="k">Charge cycles</span><span class="v">${esc(b.cycles)}</span></div>
     ${b.design ? `<div class="row"><span class="k">Holds now / when new</span><span class="v">${esc(b.full)} / ${esc(b.design)} ${esc(b.unit || "mWh")}</span></div>` : ""}
     <div class="forecast ${f.status}">🔮 ${esc(f.text)}${f.detail ? `<small>${esc(f.detail)}</small>` : ""}</div>
-    <div class="source">Read directly from the battery controller by ${esc(b.source)} on ${esc(b.measured_on)}.</div>
+    ${b.example ? `<div class="source demo">⚠️ Demo passport: ${esc(b.example)}</div>` : `<div class="source">Read directly from the battery controller by ${esc(b.source)} on ${esc(b.measured_on)}.</div>`}
     <details><summary>How is this calculated?</summary>
       <p>Health = how much energy the battery holds now ÷ how much it held when new. The forecast takes the average wear per charge so far and projects how many charges remain before ${SLP.REPLACE_AT}% health or ${SLP.MAX_CYCLES} cycles, Lenovo's Certified Refurbished replacement standard. This is an estimate, not a guarantee.</p>
     </details>

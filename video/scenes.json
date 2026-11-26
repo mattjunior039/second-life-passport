@@ -1,5 +1,5 @@
 {
-  "_help": "Order of the video. File names in 'visual'/'audio' are looked up in video/recordings/ first, then the project root. Target total ≈ 4:26 of talking (+~8s of automatic pauses).",
+  "_help": "Order of the video. File names in 'visual'/'audio' are looked up in video/recordings/ first, then the project root. Target total ≈ 4:13 of talking + 9s of held slides + ~8s of automatic pauses ≈ 4:30.",
   "scenes": [
     {"id": "01-hook", "visual": "01_hook.mov", "target": 15},
     {"id": "02-ewaste", "visual": "slides/png/S02.png", "audio": "02_vo.m4a", "target": 10},
@@ -19,11 +19,10 @@
     {"id": "16-station", "visual": "16_station.mov", "target": 12},
     {"id": "17-fixers", "visual": "slides/png/S15.png", "audio": "17_vo.m4a", "target": 8},
     {"id": "18-scale", "visual": "slides/png/S14.png", "audio": "18_vo.m4a", "target": 15},
-    {"id": "19-survey", "visual": "slides/png/S16.png", "audio": "19_vo.m4a", "target": 12},
-    {"id": "20-feedback", "visual": "slides/png/S17.png", "audio": "20_vo.m4a", "target": 12},
-    {"id": "21-lenovo", "visual": "slides/png/S18.png", "audio": "21_vo.m4a", "target": 12},
+    {"id": "20-feedback", "visual": "slides/png/S16.png", "audio": "20_vo.m4a", "target": 20},
+    {"id": "21-lenovo", "visual": "slides/png/S17.png", "audio": "21_vo.m4a", "target": 12},
     {"id": "22-close", "visual": "22_close.mov", "target": 10},
-    {"id": "23-endcard", "visual": "slides/png/S19.png", "hold": 4},
-    {"id": "24-sources", "visual": "slides/png/S20.png", "hold": 5}
+    {"id": "23-endcard", "visual": "slides/png/S18.png", "hold": 4},
+    {"id": "24-sources", "visual": "slides/png/S19.png", "hold": 5}
   ]
 }

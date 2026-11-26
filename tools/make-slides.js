@@ -1,5 +1,5 @@
 // Renders the pitch slides (1920x1080 PNG) from slides/config.json.
-// Usage: node tools/make-slides.js        -> slides/png/S01.png ... S20.png
+// Usage: node tools/make-slides.js        -> slides/png/S01.png ... S19.png
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
@@ -30,7 +30,6 @@ const kicker = s => `<div class="kicker">${s}</div>`;
 const d = cfg.demo;
 const fc = SLP.forecast({ health: d.health, cycles: d.cycles });
 const wear = (100 - d.health) / d.cycles;
-const s = cfg.survey;
 
 const slides = [
   // S01 Title
@@ -163,7 +162,7 @@ const slides = [
     <div class="row" style="gap:70px;align-items:center">
       <div style="flex:1">
         <div class="h1">Change one number…</div>
-        <div class="sub muted">Every passport has a digital fingerprint (SHA-256) saved in the registry when it's issued. Edit the battery from 93% to 99% and the fingerprint no longer matches.</div>
+        <div class="sub muted">Every passport has a digital fingerprint (SHA-256) saved in the registry when it's issued. Edit the battery from ${d.health}% to 99% and the fingerprint no longer matches.</div>
         <div class="sub" style="margin-top:40px">In production: <b>NTAG 424 DNA</b> NFC tags sign every tap, so a copied sticker fails too.</div>
       </div>
       <div class="col center">${phone("p_top.png", 'style="transform:scale(.92)"')}<div class="lbl green">✅ Real record</div></div>
@@ -208,23 +207,8 @@ const slides = [
       <div class="shot"><img src="${asset("station.png")}"></div>
     </div>`,
 
-  // S16 Survey
-  () => `${kicker("I asked people")}
-    <div class="h1">${fill(s.responses, "number of responses", v => `${v} students & parents answered my survey`)}</div>
-    <div class="row" style="gap:100px;margin-top:40px">
-      <div style="flex:1.2">
-        <div class="lbl" style="margin-bottom:24px">Biggest worry about a used laptop</div>
-        ${s.worries.map(w => `<div class="bar"><span>${w.label}</span><div><i style="width:${blank(w.pct) ? 0 : w.pct}%"></i></div><b>${fill(w.pct, "%", v => v + "%")}</b></div>`).join("")}
-      </div>
-      <div style="flex:1">
-        <div class="num red">${fill(s.forecast_helps_pct, "%", v => v + "%")}</div><div class="lbl">said a battery forecast would make them more likely to take it</div>
-        <div class="num" style="margin-top:40px">${fill(s.student_fixer_more_pct, "%", v => v + "%")}</div><div class="lbl">trust it more if a student signed the repair</div>
-      </div>
-    </div>
-    ${s.quote ? `<div class="quote small" style="margin-top:30px">“${s.quote}”</div>` : ""}`,
-
-  // S17 Feedback
-  () => `${kicker("Feedback I got, and what I changed")}
+  // S16 Feedback
+  () => `${kicker("I put it in front of real people")}
     <div class="row" style="gap:60px;margin-top:20px">
       ${cfg.feedback.map(f => `<div class="fb">
         <div class="who">${f.who}</div>
@@ -233,7 +217,7 @@ const slides = [
       </div>`).join("")}
     </div>`,
 
-  // S18 Why Lenovo
+  // S17 Why Lenovo
   () => `${kicker("Why Lenovo, why now")}
     <div class="grid2">
       <div class="tile left"><div class="num" style="font-size:72px">10/10</div><div class="lbl">iFixit repairability for the ThinkPad T14 Gen 7. The passport can tell owners: “you can swap this battery yourself.”</div></div>
@@ -243,7 +227,7 @@ const slides = [
     </div>
     ${src("iFixit (Mar 2026); EU Battery Regulation 2023/1542 Art. 11 & 13; Lenovo press release; KnoPro × Lenovo challenge materials")}`,
 
-  // S19 Close
+  // S18 Close
   () => `<div class="row center" style="gap:120px;height:100%">
     <div>
       <div class="title">Don't trust it.<br><span class="red">Tap it.</span></div>
@@ -253,7 +237,7 @@ const slides = [
     <div class="col center"><div class="qr">${qrSvg("https://" + cfg.site + "/", 380)}</div><div class="lbl">Try the live demo</div></div>
   </div>`,
 
-  // S20 Sources
+  // S19 Sources
   () => `${kicker("Sources")}
     <ol class="sources">
       <li>Global E-waste Monitor 2024, ITU/UNITAR. itu.int/en/ITU-D/Environment/Pages/Publications/The-Global-E-waste-Monitor-2024.aspx</li>
@@ -266,7 +250,7 @@ const slides = [
       <li>Lenovo press release, Asset Recovery Services (1M+ devices). news.lenovo.com</li>
       <li>U.S. PIRG Education Fund, “Chromebook Churn.” pirg.org</li>
       <li>NXP, NTAG 424 DNA (secure unique NFC messages). nxp.com</li>
-      <li>Survey: my own Google Form, ${fill(s.responses, "n", v => v + " responses")}. Prototype: ${cfg.site}</li>
+      <li>Lenovo PSREF, 100e Chromebook Gen 3 (42Wh battery). Demo passport SLP-0042 uses example battery values typical of a 3-year-old school Chromebook. Prototype: ${cfg.site}</li>
     </ol>`,
 ];
 
